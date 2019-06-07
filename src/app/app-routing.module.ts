@@ -6,7 +6,7 @@ import { BuilderComponent } from './checklists/builder/builder.component';
 
 const routes: Routes = [
   {path: '', component: SearchComponent},
-  {path: 'checklist/new', component:BuilderComponent},
+  {path: 'checklists/new', component:BuilderComponent},
   {path: 'checklists/:id/:ver', component: ChecklistDetailsComponent}
 
 ];

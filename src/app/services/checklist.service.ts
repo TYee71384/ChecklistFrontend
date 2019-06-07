@@ -37,4 +37,8 @@ export class ChecklistService {
     reorderStep(checklist) {
       return this.http.put(this.stepUri + 'reorder', checklist)
     }
+
+    createChecklist(checklist) {
+      return this.http.post<Checklist>(this.baseUri, checklist)
+    }
 }

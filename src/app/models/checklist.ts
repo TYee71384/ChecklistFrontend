@@ -27,7 +27,7 @@ export interface Checklist {
   type?: any;
   scope: string;
   logChecklistHistory: LogChecklistHistory[];
-  logChecklistSteps: LogChecklistStep[];
+  logChecklistSteps?: LogChecklistStep[];
 }
 
 

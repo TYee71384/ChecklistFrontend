@@ -7,10 +7,11 @@
 
 </div>
 </div>
-
+<div *ngIf="checklist.logChecklistSteps">
 <div *ngFor="let item of checklist.logChecklistSteps" [sortablejs]="checklist.logChecklistSteps">
   <span>
 {{item}}
   </span>
+  </div>
 
 </div>
