@@ -1,3 +1,66 @@
-<p>
-  builder works!
-</p>
+<app-header [title]="title"></app-header>
+<div class="container" *ngIf="dictionary">
+  <mat-card>
+    <mat-card-header></mat-card-header>
+    <mat-card-content>
+      <form #f="ngForm">
+        <div fxFlexLayout="row">
+          <mat-form-field>
+            <input class="" matInput placeholder="Title" ngModel name="title" required>
+          </mat-form-field>
+        </div>
+        <div fxFlexLayout>
+          <mat-form-field>
+            <mat-label>Platform</mat-label>
+            <mat-select required ngModel name="prodLine">
+              <mat-option *ngFor="let item of dictionary.prodLines " [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Platform</mat-label>
+            <mat-select required ngModel name="prodLine">
+              <mat-option *ngFor="let item of dictionary.systems " [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Process</mat-label>
+            <mat-select required ngModel name="process">
+              <mat-option *ngFor="let item of dictionary.processes " [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Release</mat-label>
+            <mat-select required ngModel name="rel">
+              <mat-option *ngFor="let item of dictionary.releases " [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select required ngModel name="type">
+              <mat-option *ngFor="let item of dictionary.types" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </form>
+      <p class="bg-danger col-md-8"> 1. Use the Checklist Builder to create a new Checklist template (starting at Version 1)
+          <br> 2. The Checklist Builder should only be used to create an initial template
+          <br> 3. The Checklist Builder is NOT to be used to create new Versions of existing Checklists
+          <br> 4. The Checklist Builder is NOT to be used to start an Update
+          <br> </p>
+    </mat-card-content>
+    <mat-card-footer>
+      <button [disabled]="!f.valid" mat-raised-button type="submit" (click)="submit(f)">Save</button>
+    </mat-card-footer>
+  </mat-card>
+</div>

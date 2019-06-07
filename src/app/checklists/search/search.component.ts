@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Checklist } from 'src/app/models/checklist';
 import { ChecklistService } from 'src/app/services/checklist.service';
 import { environment } from 'src/environments/environment';
+import { MessageService, DialogService } from 'primeng/api';
+import { BuilderComponent } from '../builder/builder.component';
 
 @Component({
   selector: 'app-search',
@@ -25,8 +27,6 @@ export class SearchComponent implements OnInit {
       { field: 'process', header: 'Process',width: '10%' },
       { field: 'rel', header: 'Release',width: '8%' },
       { field: 'type', header: 'Type',width: '8%' }
-
-
     ];
     this.getChecklists();
 
@@ -39,7 +39,4 @@ export class SearchComponent implements OnInit {
     this.checkistService.getChecklists().subscribe(x =>  this.checklists = x);
   }
 
-  testText(value) {
-    console.log(value);
-  }
 }

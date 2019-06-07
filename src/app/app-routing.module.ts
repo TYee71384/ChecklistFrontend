@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './checklists/search/search.component';
 import { ChecklistDetailsComponent } from './checklists/checklist-details/checklist-details.component';
+import { BuilderComponent } from './checklists/builder/builder.component';
 
 const routes: Routes = [
   {path: '', component: SearchComponent},
+  {path: 'checklist/new', component:BuilderComponent},
   {path: 'checklists/:id/:ver', component: ChecklistDetailsComponent}
 
 ];

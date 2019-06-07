@@ -8,7 +8,9 @@ import {
   MatDatepickerModule,
   MatInputModule,
   MatToolbarModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCardModule,
+  MatSelectModule
 } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -17,7 +19,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   exports: [
     MatFormFieldModule,
     MatButtonModule,
+    MatSelectModule,
     MatRadioModule,
+    MatCardModule,
     MatDatepickerModule,
     MatInputModule,
     MatToolbarModule,

@@ -47,6 +47,6 @@ import { BuilderComponent } from './checklists/builder/builder.component';
   ],
   providers: [ChecklistService],
   bootstrap: [AppComponent],
-  entryComponents: [StepEditorComponent]
+  entryComponents: [StepEditorComponent, BuilderComponent]
 })
 export class AppModule { }

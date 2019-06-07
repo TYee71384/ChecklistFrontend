@@ -9,7 +9,7 @@ import { StepEditorComponent } from '../step-editor/step-editor.component';
   styleUrls: ['./checklist-step-details.component.css']
 })
 export class ChecklistStepDetailsComponent implements OnInit {
-@Input() step : LogChecklistStep;
+@Input() step: LogChecklistStep;
   constructor(public dialogService: DialogService, public messageService: MessageService) { }
 
   ngOnInit() {
