@@ -1,0 +1,16 @@
+<app-header [title]="title"></app-header>
+<div *ngIf="checklist">
+  <div cdkDropList (cdkDropListDropped)="reorder($event)">
+    <p-accordion *ngFor="let step of checklist.logChecklistSteps" cdkDrag >
+       <app-checklist-step-details [step]="step"></app-checklist-step-details>
+    </p-accordion>
+
+</div>
+</div>
+
+<div *ngFor="let item of checklist.logChecklistSteps" [sortablejs]="checklist.logChecklistSteps">
+  <span>
+{{item}}
+  </span>
+
+</div>

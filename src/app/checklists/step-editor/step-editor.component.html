@@ -1,0 +1,6 @@
+<form #f="ngForm">
+  <editor [apiKey]="api" [init]="tinyMceSettings" ngModel name="stepText" value="step.stepText" [initialValue]="step.stepText"></editor>
+<button [disabled]="!f.dirty" (click)="save(f)">Save</button>
+</form>
+
+

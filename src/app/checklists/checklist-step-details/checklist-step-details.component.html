@@ -1,0 +1,8 @@
+<div class="container">
+  <p-accordionTab header="Step {{step.step}}">
+    <div [innerHTML]="step.stepText"></div>
+  <button mat-raised-button (click)="showEditor(step)" color="primary">Edit</button>
+  </p-accordionTab>
+
+</div>
+
