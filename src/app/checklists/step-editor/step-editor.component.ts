@@ -33,7 +33,6 @@ export class StepEditorComponent implements OnInit {
         'advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking save table directionality emoticons template paste textpattern'
     };
     this.step = this.config.data;
-    console.log('step step', this.step);
   }
 
   save(f: NgForm) {

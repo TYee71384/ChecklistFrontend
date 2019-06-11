@@ -21,6 +21,7 @@ import { StepEditorComponent } from './checklists/step-editor/step-editor.compon
 import { ChecklistDetailsComponent } from './checklists/checklist-details/checklist-details.component';
 import { ChecklistStepDetailsComponent } from './checklists/checklist-step-details/checklist-step-details.component';
 import { BuilderComponent } from './checklists/builder/builder.component';
+import { ChecklistHistoryComponent } from './checklists/checklist-history/checklist-history.component';
 
 
 
@@ -32,7 +33,8 @@ import { BuilderComponent } from './checklists/builder/builder.component';
     StepEditorComponent,
     ChecklistDetailsComponent,
     ChecklistStepDetailsComponent,
-    BuilderComponent
+    BuilderComponent,
+    ChecklistHistoryComponent
   ],
   imports: [
     BrowserModule,

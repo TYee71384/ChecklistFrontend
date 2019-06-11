@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChecklistService } from 'src/app/services/checklist.service';
-import { Checklist, LogChecklistStep } from 'src/app/models/checklist';
+import { Checklist, LogChecklistStep, LogChecklistHistory } from 'src/app/models/checklist';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -17,6 +17,7 @@ export class ChecklistDetailsComponent implements OnInit {
   id;
   ver;
   title;
+  history: LogChecklistHistory[];
 
   constructor(
     private checklistService: ChecklistService,
@@ -37,7 +38,7 @@ export class ChecklistDetailsComponent implements OnInit {
     //  console.log(this.id);
     this.checklistService
       .getChecklist(this.id, this.ver)
-      .subscribe(x => (this.checklist = x));
+      .subscribe(x => {this.checklist = x; this.history = x.logChecklistHistory;});
   }
 
   reorder(event) {
@@ -85,9 +86,20 @@ export class ChecklistDetailsComponent implements OnInit {
     });
     ref.onClose.subscribe((stepR: LogChecklistStep) => {
       //this.getChecklist(this.id,this.ver);
-      this.checklist.logChecklistSteps.push(stepR);
+      if(stepR){
+         this.checklist.logChecklistSteps.push(stepR);
+
       console.log('refresh', stepR);
+      }
+ console.log('here')
+    this.loadHistory();
+    console.log('hist',this.history)
       // this.step = stepR;
     });
+
+  }
+
+  loadHistory() {
+    this.checklistService.getChecklist(this.id, this.ver).subscribe(x => this.history = x.logChecklistHistory, err => console.log(er))
   }
 }

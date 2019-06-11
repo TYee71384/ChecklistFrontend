@@ -11,6 +11,7 @@ import {
   MatTabsModule,
   MatCardModule,
   MatSelectModule,
+  MatTableModule,
   MatIconModule
 } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -26,6 +27,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatIconModule,
     MatDatepickerModule,
     MatInputModule,
+    MatTableModule,
     MatToolbarModule,
     MatTabsModule,
     FlexLayoutModule,
