@@ -1,0 +1,10 @@
+<div class="container">
+  <p-accordionTab header="Step {{step.step}}">
+    <div [innerHTML]="step.stepText"></div>
+  <button mat-raised-button (click)="showEditor(step)" color="primary"><mat-icon>edit</mat-icon></button>
+  <button mat-raised-button (click)="deleteStep(step)" color="warn"><mat-icon>delete_forever</mat-icon></button>
+
+  </p-accordionTab>
+
+</div>
+

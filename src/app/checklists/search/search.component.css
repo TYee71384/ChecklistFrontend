@@ -1,0 +1,4 @@
+.ui-datatable table { table-layout: inherit !important }
+.ui-dropdown  {
+  min-width: 5.5em !important;
+}

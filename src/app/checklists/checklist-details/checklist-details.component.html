@@ -1,0 +1,10 @@
+<app-header [title]="title"></app-header>
+<button mat-raised-button (click)="showEditor()">Add Step</button>
+<div *ngIf="checklist">
+  <div cdkDropList (cdkDropListDropped)="reorder($event)" *ngIf="checklist.logChecklistSteps">
+    <p-accordion *ngFor="let step of checklist.logChecklistSteps" cdkDrag >
+       <app-checklist-step-details [step]="step"></app-checklist-step-details>
+    </p-accordion>
+
+</div>
+</div>

@@ -1,0 +1,11 @@
+<form #f="ngForm">
+  <span *ngIf="step">
+    <editor [apiKey]="api" [init]="tinyMceSettings" ngModel name="stepText" value="step.stepText" [initialValue]="step.stepText"></editor>
+  </span>
+  <span *ngIf="!step">
+      <editor [apiKey]="api" [init]="tinyMceSettings" ngModel name="stepText" value="step.stepText"></editor>
+    </span>
+<button [disabled]="!f.dirty" (click)="save(f)">Save</button>
+</form>
+
+
