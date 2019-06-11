@@ -29,6 +29,10 @@ export class ChecklistService {
       return this.http.put(this.stepUri + step.idstep, step);
     }
 
+    deleteStep(step) {
+      return this.http.post(this.stepUri + step.idstep, step)
+    }
+
     addStep(step) {
       return this.http.post(this.stepUri, step);
     }

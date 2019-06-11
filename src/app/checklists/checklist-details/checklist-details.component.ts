@@ -17,7 +17,7 @@ export class ChecklistDetailsComponent implements OnInit {
   id;
   ver;
   title;
-  stepsChanged = new Subject<LogChecklistStep[]>();
+
   constructor(
     private checklistService: ChecklistService,
     private route: ActivatedRoute,
@@ -58,18 +58,35 @@ export class ChecklistDetailsComponent implements OnInit {
       .subscribe(x => console.log('reordered'), err => console.log(err));
   }
 
+  stepChanged($event) {
+    console.log('event', $event);
+    const step = this.checklist.logChecklistSteps.findIndex(
+      i => i.idstep === $event.idstep
+    );
+    this.checklist.logChecklistSteps.splice(step, 1);
+    let count = 1;
+    this.checklist.logChecklistSteps.forEach((i: LogChecklistStep) => {
+      i.step = count;
+      count++;
+    });
+  }
+
   showEditor() {
     let header = '';
     header = `Add Step`;
     const ref = this.dialogService.open(StepEditorComponent, {
       header,
       width: '70%',
-      data: {idChecklist: this.checklist.idchecklist, version: this.checklist.version},
+      data: {
+        idChecklist: this.checklist.idchecklist,
+        version: this.checklist.version
+      },
       contentStyle: { 'max-height': '350px', overflow: 'auto' }
     });
     ref.onClose.subscribe((stepR: LogChecklistStep) => {
-      this.getChecklist(this.id,this.ver);
-
+      //this.getChecklist(this.id,this.ver);
+      this.checklist.logChecklistSteps.push(stepR);
+      console.log('refresh', stepR);
       // this.step = stepR;
     });
   }

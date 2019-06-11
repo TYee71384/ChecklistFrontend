@@ -3,7 +3,7 @@
 <div *ngIf="checklist">
   <div cdkDropList (cdkDropListDropped)="reorder($event)" *ngIf="checklist.logChecklistSteps">
     <p-accordion *ngFor="let step of checklist.logChecklistSteps" cdkDrag >
-       <app-checklist-step-details [step]="step"></app-checklist-step-details>
+       <app-checklist-step-details (stepChange)="stepChanged($event)" [step]="step"></app-checklist-step-details>
     </p-accordion>
 
 </div>

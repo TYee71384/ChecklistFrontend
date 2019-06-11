@@ -8,5 +8,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ui-dropdown  {
-  min-width: 5.5em !important;
+  min-width: 5.0em !important;
+  
 }

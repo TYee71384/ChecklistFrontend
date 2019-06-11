@@ -13,6 +13,7 @@ export interface LogChecklistStep {
   version: number;
   step: number;
   stepText: string;
+  title: string;s
 }
 
 export interface Checklist {

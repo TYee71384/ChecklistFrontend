@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LogChecklistStep } from 'src/app/models/checklist';
 import { DialogService, MessageService } from 'primeng/api';
 import { StepEditorComponent } from '../step-editor/step-editor.component';
+import * as alertify from 'alertifyjs';
+import { ChecklistService } from '../../services/checklist.service';
+
 
 @Component({
   selector: 'app-checklist-step-details',
@@ -10,7 +13,8 @@ import { StepEditorComponent } from '../step-editor/step-editor.component';
 })
 export class ChecklistStepDetailsComponent implements OnInit {
 @Input() step: LogChecklistStep;
-  constructor(public dialogService: DialogService, public messageService: MessageService) { }
+@Output() stepChange: EventEmitter<LogChecklistStep> =  new EventEmitter();
+  constructor(public dialogService: DialogService, private checklistService: ChecklistService) { }
 
   ngOnInit() {
   }
@@ -26,12 +30,18 @@ export class ChecklistStepDetailsComponent implements OnInit {
     });
     ref.onClose.subscribe((stepR: LogChecklistStep) => {
       console.log('closed',stepR)
+
      // this.step = stepR;
-      this.messageService.add({severity: 'info', summary: 'Step was edited', detail: `text: ${step.stepText}`})
     })
   }
 
+  getChecklist() {
+    this.checklistService.getChecklist(this.step.idchecklist, this.step.version).subscribe()
+  }
+
   deleteStep(step) {
+    this.checklistService.deleteStep(step).subscribe(() => {alertify.warning(`Step ${step.step} was deleted`);  this.stepChange.emit(step);}
+    , err => alertify.error(err))
   }
 
 }
