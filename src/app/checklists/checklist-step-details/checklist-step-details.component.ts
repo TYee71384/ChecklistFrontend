@@ -19,9 +19,7 @@ export class ChecklistStepDetailsComponent implements OnInit {
     private checklistService: ChecklistService
   ) {}
 
-  ngOnInit() {
-    console.log('edit', this.editMode);
-  }
+  ngOnInit() {}
 
   showEditor(step?: LogChecklistStep) {
     let header = '';

@@ -39,27 +39,23 @@ export class StepEditorComponent implements OnInit {
     this.step.stepText = f.controls['stepText'].value;
     this.step.title = f.controls['title'].value;
 
-    console.log('text',this.step.stepText);
+    console.log('text', this.step.stepText);
     if (this.step.idstep) {
-      console.log(this.step)
-
       this.cs
         .editStep(this.step)
         .subscribe(
           () => alertify.success(`Step ${this.step.step} was edited`),
           err => alertify.error(err)
         );
-
     } else {
-
-      this.cs
-        .addStep(this.step)
-        .subscribe(
-          (res: LogChecklistStep) => {
-            alertify.success(`Step ${res.step} was added`); this.step.step = res.step; this.step.idstep = res.idstep},
-          err => alertify.error(err)
-        );
-
+      this.cs.addStep(this.step).subscribe(
+        (res: LogChecklistStep) => {
+          alertify.success(`Step ${res.step} was added`);
+          this.step.step = res.step;
+          this.step.idstep = res.idstep;
+        },
+        err => alertify.error(err)
+      );
     }
 
     this.ref.close(this.step);
