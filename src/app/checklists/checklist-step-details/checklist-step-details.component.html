@@ -1,10 +1,20 @@
 <div class="container">
   <p-accordionTab header="Step {{step.step}} : {{step.title}}">
-    <div [innerHTML]="step.stepText"></div>
-  <button mat-raised-button (click)="showEditor(step)" color="primary"><mat-icon>edit</mat-icon></button>
-  <button mat-raised-button (click)="deleteStep(step)" color="warn"><mat-icon>delete_forever</mat-icon></button>
+    <mat-card>
+      <mat-card-content>
+        <div [innerHTML]="step.stepText"></div>
+      </mat-card-content>
+
+      <mat-card-actions *ngIf="editMode">
+        <button mat-raised-button (click)="showEditor(step)" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button (click)="deleteStep(step)" color="warn">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
 
   </p-accordionTab>
 
 </div>
-

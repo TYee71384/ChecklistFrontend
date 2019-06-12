@@ -1,23 +1,22 @@
 <form #f="ngForm">
   <span *ngIf="step">
     <mat-card>
-       <mat-form-field>
-          <input matInput type="text" placeholder="Step Title" [(ngModel)]="step.title" ngModel name="title" required>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Step Title" [(ngModel)]="step.title" name="title" required>
       </mat-form-field>
 
-    <editor [apiKey]="api" [init]="tinyMceSettings" [(ngModel)]="step.stepText" required name="stepText" [initialValue]="step.stepText"></editor>
-  </mat-card>
+      <editor [apiKey]="api" [init]="tinyMceSettings" [(ngModel)]="step.stepText" required name="stepText"
+        [initialValue]="step.stepText"></editor>
+    </mat-card>
   </span>
   <span *ngIf="!step">
     <mat-card>
       <mat-form-field>
-          <input matInput type="text" placeholder="Step Title" [(ngModel)]="step.title" name="title" required>
+        <input matInput type="text" placeholder="Step Title" [(ngModel)]="step.title" name="title" required>
       </mat-form-field>
       <editor [apiKey]="api" [init]="tinyMceSettings" [(ngModel)]="step.stepText" name="stepText" required></editor>
     </mat-card>
-    </span>
-<button [disabled]="!f.valid" (click)="save(f)">Save</button>
+  </span>
+  <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="save(f)">Save</button>
 
 </form>
-
-

@@ -2,8 +2,6 @@
 <mat-tab-group>
   <mat-tab label="Details" *ngIf="checklist">
     <div class="container mt-3">
-
-
       <span>
         <h5>Description</h5>
         <hr>
@@ -20,15 +18,20 @@
         <span fxLayoutAlign="center center" fxLayoutGap="100px">
           <div><b>Objective & Scope: </b> {{checklist.scope}}</div>
         </span>
+        <button class="mt-3 mb-2" mat-raised-button (click)="editDetails()">
+          <mat-icon>create</mat-icon>
+        </button>
       </span>
       <hr>
       <span>
         <h5>Steps</h5>
       </span>
+      <button class="mt-3 mb-2" mat-raised-button (click)="editDetails()">Add Step</button>
       <div>
-        <div *ngIf="checklist.logChecklistSteps">
-          <p-accordion *ngFor="let step of checklist.logChecklistSteps">
-            <app-checklist-step-details [editMode]="false" [step]="step"></app-checklist-step-details>
+        <div cdkDropList (cdkDropListDropped)="reorder($event)" *ngIf="checklist.logChecklistSteps">
+          <p-accordion *ngFor="let step of checklist.logChecklistSteps" cdkDrag>
+            <app-checklist-step-details (stepChange)="stepChanged($event)" [editMode]="edit" [step]="step">
+            </app-checklist-step-details>
           </p-accordion>
 
         </div>

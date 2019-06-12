@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 //3rd party imports
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SortablejsModule } from 'ngx-sortablejs';
-import {CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 //my modules
 import { AppRoutingModule } from './app-routing.module';
@@ -25,8 +25,8 @@ import { BuilderComponent } from './checklists/builder/builder.component';
 import { ChecklistHistoryComponent } from './checklists/checklist-history/checklist-history.component';
 import { AuthGuard } from './guards/AuthGuard';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-
-
+import { ChecklistEditComponent } from './checklists/checklist-edit/checklist-edit.component';
+import { EditDescriptionComponent } from './checklists/edit-description/edit-description.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     ChecklistStepDetailsComponent,
     BuilderComponent,
     ChecklistHistoryComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ChecklistEditComponent,
+    EditDescriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +51,14 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     EditorModule,
     FormsModule,
     MaterialModule,
-    SortablejsModule.forRoot({ animation: 150 }),
+    SortablejsModule.forRoot({ animation: 150 })
   ],
   providers: [ChecklistService, CookieService, AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents: [StepEditorComponent, BuilderComponent]
+  entryComponents: [
+    StepEditorComponent,
+    BuilderComponent,
+    EditDescriptionComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {}

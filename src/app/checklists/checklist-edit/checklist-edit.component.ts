@@ -11,24 +11,23 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { StepEditorComponent } from '../step-editor/step-editor.component';
 import { DialogService } from 'primeng/api';
 import { Link } from 'src/app/models/link';
-import { CookieService } from 'ngx-cookie-service';
-
+import * as alertify from 'alertifyjs';
+import { EditDescriptionComponent } from '../edit-description/edit-description.component';
 @Component({
-  selector: 'app-checklist-details',
-  templateUrl: './checklist-details.component.html',
-  styleUrls: ['./checklist-details.component.css']
+  selector: 'app-checklist-edit',
+  templateUrl: './checklist-edit.component.html',
+  styleUrls: ['./checklist-edit.component.css']
 })
-export class ChecklistDetailsComponent implements OnInit {
+export class ChecklistEditComponent implements OnInit {
   checklist: Checklist;
   id;
   ver;
   title;
-  cookie;
   history: LogChecklistHistory[];
-  buttons: Link[] = [{ name: 'Back to Search', path: '/checklists' }];
+  edit = true;
+  buttons: Link[] = [];
   constructor(
     private checklistService: ChecklistService,
-    private cookieService: CookieService,
     private route: ActivatedRoute,
     private dialogService: DialogService
   ) {}
@@ -40,16 +39,12 @@ export class ChecklistDetailsComponent implements OnInit {
     });
     this.getChecklist(this.id, this.ver);
     this.title = `Checklist ${this.id} Version ${this.ver}`;
-    this.cookie = this.cookieService.get('Auth');
-    console.log('cookie2', this.cookie);
-    if (this.cookie === 'true') {
-      this.buttons.unshift({
-        name: 'Edit',
-        path: '/checklists/edit',
-        id: this.id,
-        ver: this.ver
-      });
-    }
+    this.buttons.unshift({
+      name: 'Back to Details',
+      path: '/checklists/details',
+      id: this.id,
+      ver: this.ver
+    });
   }
 
   getChecklist(id, ver) {
@@ -70,12 +65,14 @@ export class ChecklistDetailsComponent implements OnInit {
     this.checklist.logChecklistSteps.forEach((i: LogChecklistStep) => {
       i.step = step;
       step++;
-      console.log(i);
     });
 
     this.checklistService
       .reorderStep(this.checklist)
-      .subscribe(x => console.log('reordered'), err => console.log(err));
+      .subscribe(
+        x => alertify.success('Reordered Step'),
+        err => alertify.error(err)
+      );
   }
 
   stepChanged($event) {
@@ -121,5 +118,17 @@ export class ChecklistDetailsComponent implements OnInit {
         x => (this.history = x.logChecklistHistory),
         err => console.log(err)
       );
+  }
+
+  editDetails() {
+    let header = `Edit Description`;
+    const ref = this.dialogService.open(EditDescriptionComponent, {
+      header,
+      width: '70%',
+      height: '100%',
+      data: this.checklist,
+      contentStyle: { 'max-height': '550px', overflow: 'auto' }
+    });
+    ref.onClose.subscribe(() => {});
   }
 }

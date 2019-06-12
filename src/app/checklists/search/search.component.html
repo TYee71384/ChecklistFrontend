@@ -43,7 +43,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
         <td *ngFor="let col of columns" >
-          <a [routerLink]="['/checklists',rowData.idchecklist,rowData.version]" routerLinkActive="router-link-active"
+          <a [routerLink]="['/checklists/details',rowData.idchecklist,rowData.version]" routerLinkActive="router-link-active"
             *ngIf="col.field==='version'">{{rowData[col.field]}}</a>
           <span *ngIf="col.field !=='version'">{{rowData[col.field]}}</span>
         </td>
@@ -54,3 +54,4 @@
 <ng-template #spinner>
   <app-spinner></app-spinner>
 </ng-template>
+

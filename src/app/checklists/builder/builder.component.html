@@ -1,15 +1,15 @@
 <app-header [title]="title" [menuButtons]="buttons"></app-header>
-<div class="container" *ngIf="dictionary">
-  <mat-card>
+<div class="mt-6 container" *ngIf="dictionary">
+  <mat-card class="mt-5">
     <mat-card-header></mat-card-header>
     <mat-card-content>
       <form #f="ngForm">
         <div fxFlexLayout="row">
-          <mat-form-field>
+          <mat-form-field style="width:100%">
             <input class="" matInput placeholder="Title" ngModel name="title" required>
           </mat-form-field>
         </div>
-        <div fxFlexLayout>
+        <div fxLayoutAlign="center center" fxLayoutGap="10px">
           <mat-form-field>
             <mat-label>Platform</mat-label>
             <mat-select required ngModel name="prodLine">
@@ -53,11 +53,13 @@
 
         </div>
       </form>
-      <p class="bg-danger col-md-8"> 1. Use the Checklist Builder to create a new Checklist template (starting at Version 1)
-          <br> 2. The Checklist Builder should only be used to create an initial template
-          <br> 3. The Checklist Builder is NOT to be used to create new Versions of existing Checklists
-          <br> 4. The Checklist Builder is NOT to be used to start an Update
-          <br> </p>
+      <p class="bg-danger col-md-8 container"> 1. Use the Checklist Builder to create a new Checklist
+        template (starting at
+        Version 1)
+        <br> 2. The Checklist Builder should only be used to create an initial template
+        <br> 3. The Checklist Builder is NOT to be used to create new Versions of existing Checklists
+        <br> 4. The Checklist Builder is NOT to be used to start an Update
+        <br> </p>
     </mat-card-content>
     <mat-card-footer>
       <button [disabled]="!f.valid" mat-raised-button type="submit" (click)="submit(f)">Save</button>

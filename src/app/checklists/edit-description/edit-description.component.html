@@ -1,0 +1,64 @@
+<mat-card>
+
+
+  <form #f="ngForm">
+    <div fxFlexLayout="row">
+      <mat-form-field style="width:100%">
+        <input class="" matInput placeholder="Title" [(ngModel)]="checklist.title" name="title" required>
+      </mat-form-field>
+    </div>
+    <div fxLayoutAlign="center center" fxLayoutGap="10px" *ngIf="dictionary">
+      <mat-form-field>
+        <mat-label>Platform</mat-label>
+        <mat-select required [(ngModel)]="checklist.prodLine" name="prodLine">
+          <mat-option *ngFor="let item of dictionary.prodLines " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>System</mat-label>
+        <mat-select required [(ngModel)]="checklist.system" name="system">
+          <mat-option *ngFor="let item of dictionary.systems " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Process</mat-label>
+        <mat-select required [(ngModel)]="checklist.process" name="process">
+          <mat-option *ngFor="let item of dictionary.processes " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Release</mat-label>
+        <mat-select required [(ngModel)]="checklist.rel" name="rel">
+          <mat-option *ngFor="let item of dictionary.releases " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select required [(ngModel)]="checklist.type" name="type">
+          <mat-option *ngFor="let item of dictionary.types" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-form-field style="width:100%">
+        <textarea class="" matInput placeholder="Objective & Scope" [(ngModel)]="checklist.scope" name="scope"
+          required></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="submit(f)">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
