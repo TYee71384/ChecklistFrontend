@@ -13,7 +13,8 @@ import {
   MatSelectModule,
   MatTableModule,
   MatIconModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatDialogModule
 } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -25,6 +26,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatDialogModule,
     MatIconModule,
     MatDatepickerModule,
     MatInputModule,

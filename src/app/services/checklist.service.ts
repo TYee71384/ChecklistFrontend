@@ -24,6 +24,9 @@ export class ChecklistService {
   getDictionary() {
     return this.http.get<LookupDictionary>(environment.baseUri + 'dictionary');
   }
+  editChecklist(checklist, id, ver) {
+    return this.http.put(`${this.baseUri}/${id}/${ver}`, checklist);
+  }
 
   editStep(step) {
     return this.http.put(this.stepUri + step.idstep, step);

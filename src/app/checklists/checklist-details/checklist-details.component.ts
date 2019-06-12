@@ -60,60 +60,6 @@ export class ChecklistDetailsComponent implements OnInit {
     });
   }
 
-  reorder(event) {
-    moveItemInArray(
-      this.checklist.logChecklistSteps,
-      event.previousIndex,
-      event.currentIndex
-    );
-    let step = 1;
-    this.checklist.logChecklistSteps.forEach((i: LogChecklistStep) => {
-      i.step = step;
-      step++;
-      console.log(i);
-    });
-
-    this.checklistService
-      .reorderStep(this.checklist)
-      .subscribe(x => console.log('reordered'), err => console.log(err));
-  }
-
-  stepChanged($event) {
-    console.log('event', $event);
-    const step = this.checklist.logChecklistSteps.findIndex(
-      i => i.idstep === $event.idstep
-    );
-    this.checklist.logChecklistSteps.splice(step, 1);
-    let count = 1;
-    this.checklist.logChecklistSteps.forEach((i: LogChecklistStep) => {
-      i.step = count;
-      count++;
-    });
-  }
-
-  showEditor() {
-    let header = '';
-    header = `Add Step`;
-    const ref = this.dialogService.open(StepEditorComponent, {
-      header,
-      width: '70%',
-      height: '100%',
-      data: {
-        idChecklist: this.checklist.idchecklist,
-        version: this.checklist.version
-      },
-      contentStyle: { 'max-height': '550px', overflow: 'auto' }
-    });
-    ref.onClose.subscribe((stepR: LogChecklistStep) => {
-      //this.getChecklist(this.id,this.ver);
-      if (stepR) {
-        this.checklist.logChecklistSteps.push(stepR);
-      }
-      this.loadHistory();
-      // this.step = stepR;
-    });
-  }
-
   loadHistory() {
     this.checklistService
       .getChecklist(this.id, this.ver)

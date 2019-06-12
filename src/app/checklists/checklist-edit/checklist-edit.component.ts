@@ -13,6 +13,7 @@ import { DialogService } from 'primeng/api';
 import { Link } from 'src/app/models/link';
 import * as alertify from 'alertifyjs';
 import { EditDescriptionComponent } from '../edit-description/edit-description.component';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-checklist-edit',
   templateUrl: './checklist-edit.component.html',
@@ -29,7 +30,8 @@ export class ChecklistEditComponent implements OnInit {
   constructor(
     private checklistService: ChecklistService,
     private route: ActivatedRoute,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -121,14 +123,10 @@ export class ChecklistEditComponent implements OnInit {
   }
 
   editDetails() {
-    let header = `Edit Description`;
-    const ref = this.dialogService.open(EditDescriptionComponent, {
-      header,
-      width: '70%',
-      height: '100%',
-      data: this.checklist,
-      contentStyle: { 'max-height': '550px', overflow: 'auto' }
+    const dialogRef = this.dialog.open(EditDescriptionComponent, {
+      width: '80%',
+      height: '70%',
+      data: this.checklist
     });
-    ref.onClose.subscribe(() => {});
   }
 }

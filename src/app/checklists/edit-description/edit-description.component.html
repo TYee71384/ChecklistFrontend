@@ -34,7 +34,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Release</mat-label>
-        <mat-select required [(ngModel)]="checklist.rel" name="rel">
+        <mat-select [(ngModel)]="checklist.rel" name="rel">
           <mat-option *ngFor="let item of dictionary.releases " [value]="item">
             {{item}}
           </mat-option>
@@ -42,7 +42,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Type</mat-label>
-        <mat-select required [(ngModel)]="checklist.type" name="type">
+        <mat-select [(ngModel)]="checklist.type" name="type">
           <mat-option *ngFor="let item of dictionary.types" [value]="item">
             {{item}}
           </mat-option>
@@ -55,9 +55,11 @@
           required></textarea>
       </mat-form-field>
     </div>
+    <input type="hidden" [(ngModel)]="checklist.idchecklist" name="idchecklist">
+    <input type="hidden" [(ngModel)]="checklist.version" name="version">
   </form>
   <mat-card-actions>
-    <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="submit(f)">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!f.valid" (click)="submit(f)">
       <mat-icon>save</mat-icon>
     </button>
   </mat-card-actions>
