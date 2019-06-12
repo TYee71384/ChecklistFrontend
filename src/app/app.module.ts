@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 //3rd party imports
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SortablejsModule } from 'ngx-sortablejs';
+import {CookieService } from 'ngx-cookie-service';
 
 //my modules
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,8 @@ import { ChecklistDetailsComponent } from './checklists/checklist-details/checkl
 import { ChecklistStepDetailsComponent } from './checklists/checklist-step-details/checklist-step-details.component';
 import { BuilderComponent } from './checklists/builder/builder.component';
 import { ChecklistHistoryComponent } from './checklists/checklist-history/checklist-history.component';
+import { AuthGuard } from './guards/AuthGuard';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
 
@@ -34,7 +37,8 @@ import { ChecklistHistoryComponent } from './checklists/checklist-history/checkl
     ChecklistDetailsComponent,
     ChecklistStepDetailsComponent,
     BuilderComponent,
-    ChecklistHistoryComponent
+    ChecklistHistoryComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { ChecklistHistoryComponent } from './checklists/checklist-history/checkl
     MaterialModule,
     SortablejsModule.forRoot({ animation: 150 }),
   ],
-  providers: [ChecklistService],
+  providers: [ChecklistService, CookieService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [StepEditorComponent, BuilderComponent]
 })

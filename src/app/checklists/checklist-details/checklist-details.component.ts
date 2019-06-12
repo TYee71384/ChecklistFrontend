@@ -88,18 +88,14 @@ export class ChecklistDetailsComponent implements OnInit {
       //this.getChecklist(this.id,this.ver);
       if(stepR){
          this.checklist.logChecklistSteps.push(stepR);
-
-      console.log('refresh', stepR);
       }
- console.log('here')
     this.loadHistory();
-    console.log('hist',this.history)
       // this.step = stepR;
     });
 
   }
 
   loadHistory() {
-    this.checklistService.getChecklist(this.id, this.ver).subscribe(x => this.history = x.logChecklistHistory, err => console.log(er))
+    this.checklistService.getChecklist(this.id, this.ver).subscribe(x => this.history = x.logChecklistHistory, err => console.log(err))
   }
 }

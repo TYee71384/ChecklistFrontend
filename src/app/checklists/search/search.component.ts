@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { MessageService, DialogService } from 'primeng/api';
 import { BuilderComponent } from '../builder/builder.component';
 import { LookupDictionary } from 'src/app/models/dictionary';
+import { Link } from 'src/app/models/link';
 
 @Component({
   selector: 'app-search',
@@ -15,27 +16,33 @@ export class SearchComponent implements OnInit {
   constructor(private checkistService: ChecklistService) {}
   title = 'Checklist Search';
   checklists: Checklist[];
+  menuButtons: Link[] = [
+    { name: 'Create New Checklist', path: 'checklists/new' }
+  ];
   cols: any[];
   dictionary: LookupDictionary;
   platform = [];
-  system = [];;
-  process =  [];;
-  type = [];;
-  release = [];;
-  statuses: any[] = [{label: '---', value: ''},
-  {label: 'Approved' , value:'Approved'},
-   {label: 'Draft', value: 'Draft'}, {label:'Archived', value: 'Archived'}]
+  system = [];
+  process = [];
+  type = [];
+  release = [];
+  statuses: any[] = [
+    { label: '---', value: '' },
+    { label: 'Approved', value: 'Approved' },
+    { label: 'Draft', value: 'Draft' },
+    { label: 'Archived', value: 'Archived' }
+  ];
   ngOnInit() {
     this.cols = [
       { field: 'idchecklist', header: 'ID', width: '8%' },
       { field: 'version', header: 'Version', width: '8%' },
       { field: 'status', header: 'Status', width: '10%' },
       { field: 'title', header: 'Title', width: '30%' },
-      { field: 'prodLine', header: 'Platform',width: '8%' },
-      { field: 'system', header: 'System',width: '10%' },
-      { field: 'process', header: 'Process',width: '10%' },
-      { field: 'rel', header: 'Release',width: '8%' },
-      { field: 'type', header: 'Type',width: '8%' }
+      { field: 'prodLine', header: 'Platform', width: '8%' },
+      { field: 'system', header: 'System', width: '10%' },
+      { field: 'process', header: 'Process', width: '10%' },
+      { field: 'rel', header: 'Release', width: '8%' },
+      { field: 'type', header: 'Type', width: '8%' }
     ];
     this.getChecklists();
     this.checkistService.getDictionary().subscribe(x => {
@@ -47,17 +54,24 @@ export class SearchComponent implements OnInit {
     });
   }
 
-populateDropdown(array) {
-  const returnarray = [{label: '---', value: ''}];
-  array.forEach(element => {
-    const item = {label: element, value: element};
-    returnarray.push(item);
-  });
-  return returnarray;
-}
+  populateDropdown(array) {
+    const returnarray = [{ label: '---', value: '' }];
+    array.forEach(element => {
+      const item = { label: element, value: element };
+      returnarray.push(item);
+    });
+    return returnarray;
+  }
   getChecklists() {
-    setTimeout(() => {}, 10000);
-    this.checkistService.getChecklists().subscribe(x =>  this.checklists = x);
+    this.checkistService.getChecklists().subscribe(x =>
+      setTimeout(() => {
+        this.checklists = x;
+      }, 500)
+    );
   }
 
+  clickMe() {
+    console.log('here');
+    alert('you clicked here');
+  }
 }

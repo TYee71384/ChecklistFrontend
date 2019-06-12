@@ -1,7 +1,12 @@
 <mat-toolbar color="accent">
     <span>{{title}}</span>
     <span fxFlex="1 1 auto"></span>
-    <div *ngFor="let item of menuButtons">
-      
-    </div>
+    <span *ngIf="menuButtons">
+      <div *ngFor="let item of menuButtons">
+        <span><button mat-raised-button [routerLink]="['/' + item.path]">{{item.name}}</button></span>
+      </div>
+    </span>
+
+
+
 </mat-toolbar>

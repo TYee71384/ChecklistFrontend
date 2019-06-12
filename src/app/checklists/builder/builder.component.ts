@@ -13,6 +13,9 @@ export class BuilderComponent implements OnInit {
 dictionary: LookupDictionary;
   constructor(private checklistService: ChecklistService, private router: Router) { }
 title = 'Create a new Checklist';
+buttons: Link[] = [
+  {name: 'Back to Search', path: '/checklists'}
+]
   ngOnInit() {
     this.checklistService.getDictionary().subscribe(x => this.dictionary = x);
   }

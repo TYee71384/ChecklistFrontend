@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Link } from 'src/app/models/link';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 @Input() title: string;
-@Input() menuButtons;
+@Input() menuButtons: Link[];
   constructor() { }
 
   ngOnInit() {
