@@ -1,0 +1,25 @@
+<mat-card>
+  <b>Page Identification Information</b>
+  <table class="table-bordered">
+    <tr>
+      <td>Document Status</td>
+      <td>{{history.status}}</td>
+    </tr>
+    <tr>
+      <td>Version #</td>
+      <td>{{history.version}}</td>
+    </tr>
+    <tr>
+      <td>Effective Date</td>
+      <td>{{history.fileTime | date: 'medium'}}</td>
+    </tr>
+    <tr>
+      <td>Approved By</td>
+      <td>{{history.fileBy}}</td>
+    </tr>
+    <tr>
+      <td>Approved Date</td>
+      <td>{{history.fileTime | date: 'medium'}}</td>
+    </tr>
+  </table>
+</mat-card>

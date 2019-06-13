@@ -27,6 +27,7 @@ import { AuthGuard } from './guards/AuthGuard';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ChecklistEditComponent } from './checklists/checklist-edit/checklist-edit.component';
 import { EditDescriptionComponent } from './checklists/edit-description/edit-description.component';
+import { PageIdentificationInfoComponent } from './shared/page-identification-info/page-identification-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EditDescriptionComponent } from './checklists/edit-description/edit-des
     ChecklistHistoryComponent,
     SpinnerComponent,
     ChecklistEditComponent,
-    EditDescriptionComponent
+    EditDescriptionComponent,
+    PageIdentificationInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Checklist } from 'src/app/models/checklist';
 import { ChecklistService } from 'src/app/services/checklist.service';
 import { environment } from 'src/environments/environment';
@@ -6,19 +6,22 @@ import { MessageService, DialogService } from 'primeng/api';
 import { BuilderComponent } from '../builder/builder.component';
 import { LookupDictionary } from 'src/app/models/dictionary';
 import { Link } from 'src/app/models/link';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
   constructor(private checkistService: ChecklistService) {}
+  @ViewChild('dt', { static: false }) table;
   title = 'Checklist Search';
   checklists: Checklist[];
   menuButtons: Link[] = [
     { name: 'Create New Checklist', path: 'checklists/new' }
   ];
+  selectedItem = 'Approved';
   cols: any[];
   dictionary: LookupDictionary;
   platform = [];
@@ -34,17 +37,17 @@ export class SearchComponent implements OnInit {
   ];
   ngOnInit() {
     this.cols = [
-      { field: 'idchecklist', header: 'ID', width: '8%' },
-      { field: 'version', header: 'Version', width: '8%' },
+      { field: 'idchecklist', header: 'ID', width: '5%' },
+      { field: 'version', header: 'Version', width: '5%' },
       { field: 'status', header: 'Status', width: '10%' },
-      { field: 'title', header: 'Title', width: '30%' },
-      { field: 'prodLine', header: 'Platform', width: '8%' },
-      { field: 'system', header: 'System', width: '10%' },
+      { field: 'title', header: 'Title', width: '25%' },
+      { field: 'prodLine', header: 'Platform', width: '9%' },
+      { field: 'system', header: 'System', width: '8%' },
       { field: 'process', header: 'Process', width: '10%' },
-      { field: 'rel', header: 'Release', width: '8%' },
-      { field: 'type', header: 'Type', width: '8%' }
+      { field: 'rel', header: 'Release', width: '6%' },
+      { field: 'type', header: 'Type', width: '6%' }
     ];
-    this.getChecklists();
+
     this.checkistService.getDictionary().subscribe(x => {
       this.platform = this.populateDropdown(x.prodLines);
       this.process = this.populateDropdown(x.processes);
@@ -63,15 +66,11 @@ export class SearchComponent implements OnInit {
     return returnarray;
   }
   getChecklists() {
-    this.checkistService.getChecklists().subscribe(x =>
-      setTimeout(() => {
-        this.checklists = x;
-      }, 500)
-    );
+    this.checkistService.getChecklists().subscribe(x =>this.checklists = x);
   }
 
-  clickMe() {
-    console.log('here');
-    alert('you clicked here');
+  ngAfterViewInit() {
+    this.getChecklists();
+    this.table.filter(this.selectedItem,'status', 'equals')
   }
 }

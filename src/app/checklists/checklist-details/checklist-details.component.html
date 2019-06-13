@@ -33,6 +33,10 @@
 
         </div>
       </div>
+      <span *ngIf="checklist.status !== 'Draft'">
+        <app-page-identification-info [history]="pageIdInfo"></app-page-identification-info>
+      </span>
+
     </div>
   </mat-tab>
   <mat-tab label="History" *ngIf="checklist">

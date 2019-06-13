@@ -22,6 +22,7 @@ export class ChecklistDetailsComponent implements OnInit {
   checklist: Checklist;
   id;
   ver;
+  pageIdInfo;
   title;
   history: LogChecklistHistory[];
   buttons: Link[] = [{ name: 'Back to Search', path: '/checklists' }];
@@ -46,6 +47,18 @@ export class ChecklistDetailsComponent implements OnInit {
     this.checklistService.getChecklist(this.id, this.ver).subscribe(x => {
       this.checklist = x;
       this.history = x.logChecklistHistory;
+      this.pageIdInfo = x.logChecklistHistory.slice(-1)[0];
+      if(this.checklist.status === 'Approved')
+      {
+        {
+          this.buttons.unshift({
+            name: 'Update Starter',
+            path: '/update/starter',
+            id: this.id,
+            ver: this.ver
+          });
+        }
+      }
       if (
         this.cookieService.get('Auth') === 'true' &&
         this.checklist.status === 'Draft'

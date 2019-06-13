@@ -1,5 +1,5 @@
-<app-header [title]="title" [menuButtons]="menuButtons"></app-header>
-<div *ngIf="checklists; else spinner;" fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="20px" class="container">
+<app-header [title]="title" #dt2 [menuButtons]="menuButtons"></app-header>
+<div fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="20px" class="container">
   <p-table  fxFlex="75" #dt [columns]="cols" [value]="checklists" class="mt-3" [paginator]="true"
     [rows]="15">
     <ng-template pTemplate="colgroup" let-columns>
@@ -9,16 +9,16 @@
     </ng-template>
     <ng-template pTemplate="caption">
       <div style="text-align: right;">
-        <mat-form-field>
-        <i class="fa fa-search"></i>
-        <input matInput placeholder="Global Search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-      </mat-form-field>
+        <mat-icon>search</mat-icon>
+        <input pInputText placeholder="Global Search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+
       </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of cols">
+        <th *ngFor="let col of cols" [pSortableColumn]="col.field">
           {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
       </tr>
       <tr >
@@ -26,7 +26,7 @@
             <div fxLayout="column">
             <input type="number" pInputText  *ngSwitchCase="'idchecklist'"  (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
               <input type="number" pInputText  *ngSwitchCase="'version'" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-              <p-dropdown *ngSwitchCase="'status'" fxFlex="10" [options]="statuses" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+              <p-dropdown *ngSwitchCase="'status'" fxFlex="10" [(ngModel)]="selectedItem" [options]="statuses" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
               <input type="text" pInputText fxFlex="80" *ngSwitchCase="'title'" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
               <p-dropdown *ngSwitchCase="'prodLine'" [options]="platform" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
               <p-dropdown *ngSwitchCase="'system'" [options]="system" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
@@ -51,7 +51,5 @@
     </ng-template>
   </p-table>
 </div>
-<ng-template #spinner>
-  <app-spinner></app-spinner>
-</ng-template>
+
 
