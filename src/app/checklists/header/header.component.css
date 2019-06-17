@@ -1,0 +1,15 @@
+.Default {
+  color: black
+}
+
+.Approved {
+  color: green;
+}
+
+.Archived {
+  color: gray;
+}
+
+.Draft {
+  color: red
+}

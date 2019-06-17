@@ -48,12 +48,24 @@ export class ChecklistService {
     return this.http.post<Checklist>(this.baseUri, checklist);
   }
 
+  checkForDraft(id) {
+    return this.http.get(`${this.baseUri}/${id}/draftExist`);
+  }
+
+  deleteChecklist(id, ver) {
+    return this.http.delete(`${this.baseUri}/${id}/${ver}`);
+  }
+
+  archiveChecklist(id, ver) {
+    return this.http.post(`${this.baseUri}/${id}/${ver}/archive`, {});
+  }
+
   isAuth() {
     this.http
       .get(environment.baseUri + 'dictionary/authorized')
-      .subscribe(x => {
-        this.cookieService.set('Auth', x.toString());
-        console.log(this.cookieService.getAll());
+      .subscribe((x: any) => {
+        this.cookieService.set('Auth', x.isAuth);
+        this.cookieService.set('User', x.user);
       });
   }
 }

@@ -27,7 +27,7 @@ export class EditDescriptionComponent implements OnInit {
   ngOnInit() {
     this.checklistService.getDictionary().subscribe(x => {
       this.dictionary = x;
-      console.log(x);
+      
     });
   }
 

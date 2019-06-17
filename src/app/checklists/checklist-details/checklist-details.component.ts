@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChecklistService } from 'src/app/services/checklist.service';
-import {
-  Checklist,
-  LogChecklistStep,
-  LogChecklistHistory
-} from 'src/app/models/checklist';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { StepEditorComponent } from '../step-editor/step-editor.component';
+import { Checklist, LogChecklistHistory } from 'src/app/models/checklist';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as alertify from 'alertifyjs';
 import { DialogService } from 'primeng/api';
 import { Link } from 'src/app/models/link';
 import { CookieService } from 'ngx-cookie-service';
@@ -24,12 +18,16 @@ export class ChecklistDetailsComponent implements OnInit {
   ver;
   pageIdInfo;
   title;
+  showApproval;
+  status;
+  showArchive;
   history: LogChecklistHistory[];
   buttons: Link[] = [{ name: 'Back to Search', path: '/checklists' }];
   constructor(
     private checklistService: ChecklistService,
     private cookieService: CookieService,
     private route: ActivatedRoute,
+    private router: Router,
     private dialogService: DialogService
   ) {}
 
@@ -46,10 +44,12 @@ export class ChecklistDetailsComponent implements OnInit {
     //  console.log(this.id);
     this.checklistService.getChecklist(this.id, this.ver).subscribe(x => {
       this.checklist = x;
+      this.status = x.status;
       this.history = x.logChecklistHistory;
+      this.isApproved();
+      this.checkForDraft();
       this.pageIdInfo = x.logChecklistHistory.slice(-1)[0];
-      if(this.checklist.status === 'Approved')
-      {
+      if (this.checklist.status === 'Approved') {
         {
           this.buttons.unshift({
             name: 'Update Starter',
@@ -80,5 +80,36 @@ export class ChecklistDetailsComponent implements OnInit {
         x => (this.history = x.logChecklistHistory),
         err => console.log(err)
       );
+  }
+
+  isApproved() {
+    const user = this.cookieService.get('User');
+    const lastuser = this.checklist.logChecklistHistory.slice(-1)[0].fileBy;
+    if (this.checklist.status === 'Draft' && user !== lastuser) {
+      this.showApproval = true;
+    }
+  }
+
+  checkForDraft() {
+    this.checklistService
+      .checkForDraft(this.id)
+      .subscribe(x => (this.showArchive = x));
+  }
+
+  deleteChecklist() {
+    this.checklistService.deleteChecklist(this.id,this.ver).subscribe(() => {
+      alertify.warning(`Checklist Id: ${this.id} Version: ${this.ver} was deleted`);
+      this.router.navigate(['/']);
+    }, err => alertify.error(err));
+  }
+
+  archiveChecklist() {
+    this.checklistService.archiveChecklist(this.id,this.ver).subscribe(() =>
+    {
+      alertify.success('Checklist was set to Archived');
+      this.status = 'Archived';
+    },
+      err => alertify.error(err)
+    )
   }
 }

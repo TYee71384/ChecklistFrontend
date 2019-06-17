@@ -39,7 +39,6 @@ export class StepEditorComponent implements OnInit {
     this.step.stepText = f.controls['stepText'].value;
     this.step.title = f.controls['title'].value;
 
-    console.log('text', this.step.stepText);
     if (this.step.idstep) {
       this.cs
         .editStep(this.step)

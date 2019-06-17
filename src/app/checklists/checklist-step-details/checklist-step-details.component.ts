@@ -31,9 +31,7 @@ export class ChecklistStepDetailsComponent implements OnInit {
       contentStyle: { 'max-height': '350px', overflow: 'auto' }
     });
     ref.onClose.subscribe((stepR: LogChecklistStep) => {
-      console.log('closed', stepR);
 
-      // this.step = stepR;
     });
   }
 
@@ -52,4 +50,5 @@ export class ChecklistStepDetailsComponent implements OnInit {
       err => alertify.error(err)
     );
   }
+
 }

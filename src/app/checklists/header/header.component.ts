@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Link } from 'src/app/models/link';
 import { Router } from '@angular/router';
 
@@ -7,12 +7,20 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() title: string;
+  @Input() status: string;
   @Input() menuButtons: Link[];
+  statusClass = 'draft';
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+  
+  }
 
   navigate(item: Link) {
     if (item.id || item.ver) {

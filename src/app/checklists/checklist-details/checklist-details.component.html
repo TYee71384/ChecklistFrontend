@@ -1,9 +1,11 @@
-<app-header [title]="title" [menuButtons]="buttons"></app-header>
+<app-header *ngIf="checklist" [title]="title" [menuButtons]="buttons" [status]="status"></app-header>
 <mat-tab-group>
   <mat-tab label="Details" *ngIf="checklist">
     <div class="container mt-3">
-
-
+      <span *ngIf="showApproval && !checklist.scope">
+        <h5 class="alert-danger text-center">Objective and Scope is required in order to Approve</h5>
+      </span>
+      <span *ngIf="showApproval && checklist.scope"><button mat-raised-button color="primary">Approve</button></span>
       <span>
         <h5>Description</h5>
         <hr>
@@ -33,10 +35,15 @@
 
         </div>
       </div>
-      <span *ngIf="checklist.status !== 'Draft'">
+      <span *ngIf="checklist.status !== 'Draft'" class="mb-3 mt-3">
         <app-page-identification-info [history]="pageIdInfo"></app-page-identification-info>
       </span>
-
+      <span *ngIf="checklist.status === 'Draft'">
+        <button mat-raised-button color="warn" (click)="deleteChecklist()">Delete</button>
+      </span>
+      <span *ngIf="showArchive && status == 'Approved'">
+        <button mat-raised-button color="primary" (click)="archiveChecklist()">Archive</button>
+      </span>
     </div>
   </mat-tab>
   <mat-tab label="History" *ngIf="checklist">
@@ -45,4 +52,6 @@
     </ng-template>
 
   </mat-tab>
+
 </mat-tab-group>
+
