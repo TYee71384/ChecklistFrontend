@@ -44,6 +44,7 @@ export class ChecklistDetailsComponent implements OnInit {
     //  console.log(this.id);
     this.checklistService.getChecklist(this.id, this.ver).subscribe(x => {
       this.checklist = x;
+      console.log('get',this.checklist);
       this.status = x.status;
       this.history = x.logChecklistHistory;
       this.isApproved();

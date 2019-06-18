@@ -124,8 +124,7 @@ export class ChecklistEditComponent implements OnInit {
 
   editDetails() {
     const dialogRef = this.dialog.open(EditDescriptionComponent, {
-      width: '80%',
-      height: '70%',
+
       data: this.checklist
     });
   }

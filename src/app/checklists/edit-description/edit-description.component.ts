@@ -22,12 +22,12 @@ export class EditDescriptionComponent implements OnInit {
     private checklistService: ChecklistService,
     public dialogRef: MatDialogRef<EditDescriptionComponent>,
     @Inject(MAT_DIALOG_DATA) public checklist: Checklist //public config: MatDialogConfig // public ref: DynamicDialogRef, // public config: DynamicDialogConfig
-  ) {}
+    ) {}
 
   ngOnInit() {
     this.checklistService.getDictionary().subscribe(x => {
       this.dictionary = x;
-      
+
     });
   }
 

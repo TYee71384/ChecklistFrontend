@@ -27,7 +27,7 @@ export class BuilderComponent implements OnInit {
       checklist => {
         alertify.success(`Checklist ${checklist.idchecklist} was created!`);
         this.router.navigate([
-          '/checklists',
+          '/checklists/details',
           checklist.idchecklist,
           checklist.version
         ]);
