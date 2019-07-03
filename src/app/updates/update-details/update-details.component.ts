@@ -40,7 +40,9 @@ export class UpdateDetailsComponent implements OnInit {
     this.updateService.getUpdate(this.id).subscribe(x => (this.update = x));
   }
 
-  hubReturn(progress,step) {
-    this.update.logUpdateSteps[step -1].progress = progress
+  hubReturn(progress,step, comment) {
+    this.update.logUpdateSteps[step -1].progress = progress;
+    this.update.logUpdateSteps[step -1].comment = comment;
+
   }
 }

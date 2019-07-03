@@ -7,5 +7,10 @@
       <div [innerHTML]="step.stepText"></div>
     </mat-card-content>
   </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <input type="text" (keyup)="saveComment($event)" [value]="step.comment">
+    </mat-card-content>
+  </mat-card>
 </p-accordionTab>
 {{step.progress}}

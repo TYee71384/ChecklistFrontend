@@ -15,7 +15,7 @@ export class UpdateStepDetailsComponent implements AfterViewInit {
   constructor() {}
 isComplete
   ngAfterViewInit() {
-    
+
   }
 
   getProgress(e) {
@@ -23,6 +23,13 @@ isComplete
     e.checked ? this.isComplete = 'Done' : this.isComplete = '';
     console.log(this.isComplete)
     this.conn.invoke('GetProgress', this.step.idupdate, this.step.step, this.isComplete);
+  }
+
+  saveComment(e) {
+    setTimeout(() => {
+this.conn.invoke('SaveComment',this.step.idupdate, this.step.step, e.target.value)
+    }, 2000);
+
   }
 
 
