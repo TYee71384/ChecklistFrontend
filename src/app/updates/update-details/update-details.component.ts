@@ -40,10 +40,7 @@ export class UpdateDetailsComponent implements OnInit {
     this.updateService.getUpdate(this.id).subscribe(x => (this.update = x));
   }
 
-  hubReturn(text) {
-   /// console.log(this.update);
-    //this.update = text;
-    let item = JSON.stringify(text)
-    console.log(text.Idupdate)
+  hubReturn(progress,step) {
+    this.update.logUpdateSteps[step -1].progress = progress
   }
 }
