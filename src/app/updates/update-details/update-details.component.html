@@ -1,0 +1,7 @@
+<div *ngIf="update" class="container">
+  <p-accordion *ngFor="let step of update.logUpdateSteps">
+    <app-update-step-details [step]="step" [conn]="conn" ></app-update-step-details>
+  </p-accordion>
+</div>
+
+

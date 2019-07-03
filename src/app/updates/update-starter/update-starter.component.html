@@ -1,0 +1,76 @@
+<div *ngIf="checklist && dictionary">
+  <h5>Update Information</h5>
+  <hr>
+  <form #f="ngForm">
+    <div fxLayoutGap="20px" fxLayoutAlign="center center">
+      <mat-form-field>
+        <mat-label>Platform </mat-label>
+        <input disabled matInput type="text" [(ngModel)]="checklist.prodLine" name="prodLine">
+      </mat-form-field>
+
+
+      <mat-form-field fxFlex="30%">
+        <mat-label>Site</mat-label>
+        <mat-select required ngModel name="siteKml">
+          <mat-option *ngFor="let site of sites " [value]="site.siteKml">
+            {{site.siteKml}} -- {{site.siteName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput name="updateNum" ngModel placeholder="Update #">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>System </mat-label>
+        <input disabled matInput type="text" [(ngModel)]="checklist.system" name="system">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Process </mat-label>
+        <input disabled matInput type="text" [(ngModel)]="checklist.process" name="process">
+      </mat-form-field>
+    </div>
+    <div fxLayoutGap="20px" fxLayoutAlign="center center">
+      <mat-form-field>
+        <input type="number" name="task" ngModel matInput placeholder="Task #">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Update Release</mat-label>
+        <mat-select required ngModel name="updateRelease">
+          <mat-option *ngFor="let item of dictionary.releases " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>PPack</mat-label>
+        <mat-select required ngModel name="updatePpack">
+          <mat-option *ngFor="let item of dictionary.pPacks " [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+  <h5>Checklist</h5>
+  <hr>
+  <div fxLayoutGap="20px" fxLayoutAlign="center center">
+    <span><b>Checklist ID: </b>{{checklist.idchecklist}}</span>
+    <span><b>Version: </b>{{checklist.version}}</span>
+    <span><b>Status: </b>{{checklist.status}}</span>
+    <span><b>Title:</b>{{checklist.title}}</span>
+  </div>
+  <div fxLayoutGap="20px" fxLayoutAlign="center center">
+    <span><b>Platform: </b>{{checklist.prodLine}}</span>
+    <span><b>System: </b>{{checklist.system}}</span>
+    <span><b>Process: </b>{{checklist.process}}</span>
+    <span><b>Release: </b>{{checklist.rel}}</span>
+    <span><b>Type:</b>{{checklist.type}}</span>
+  </div>
+  <div fxLayoutAlign="center center">
+    <span><b>Objective & Scope: </b>{{checklist.scope}}</span>
+  </div>
+  <hr>
+  <div fxLayoutAlign="center center">
+    <button [disabled]="f.invalid" mat-raised-button color="primary" type="submit" (click)="submit(f)">Start
+      Update</button>
+  </div>

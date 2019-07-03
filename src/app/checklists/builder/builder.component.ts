@@ -19,20 +19,19 @@ export class BuilderComponent implements OnInit {
   title = 'Create a new Checklist';
   buttons: Link[] = [{ name: 'Back to Search', path: '/checklists' }];
   ngOnInit() {
-    this.checklistService.getDictionary().subscribe(x => (this.dictionary = x));
+    this.checklistService.getDictionary().subscribe(x => {this.dictionary = x; console.log(this.dictionary); });
   }
 
   submit(form: NgForm) {
     this.checklistService.createChecklist(form.value).subscribe(
       checklist => {
         alertify.success(`Checklist ${checklist.idchecklist} was created!`);
-        this.router.navigate([
-          '/checklists/details',
+        this.router.navigate(['/checklists/details',
           checklist.idchecklist,
           checklist.version
         ]);
       },
-      err => alertify.console.error(err)
+      err => alertify.error(err)
     );
   }
 }

@@ -18,3 +18,9 @@ export class PaginatedResult<T> {
   result: T;
   pagination: Pagination;
 }
+
+export interface Site {
+  prodLine: string;
+  siteKml: string;
+  siteName: string;
+}

@@ -1,0 +1,11 @@
+<p-accordionTab >
+  <mat-card>
+    <mat-checkbox (change)="getProgress($event)" [value]="isComplete" [checked]="step.progress === 'Done'"></mat-checkbox>
+  </mat-card>
+  <mat-card>
+    <mat-card-content>
+      <div [innerHTML]="step.stepText"></div>
+    </mat-card-content>
+  </mat-card>
+</p-accordionTab>
+{{step.progress}}

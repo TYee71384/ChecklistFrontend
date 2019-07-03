@@ -29,7 +29,7 @@
       </span>
       <div>
         <div *ngIf="checklist.logChecklistSteps">
-          <p-accordion *ngFor="let step of checklist.logChecklistSteps">
+          <p-accordion *ngFor="let step of checklist.logChecklistSteps" >
             <app-checklist-step-details [editMode]="false" [step]="step"></app-checklist-step-details>
           </p-accordion>
 

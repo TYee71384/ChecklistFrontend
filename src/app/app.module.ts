@@ -1,16 +1,16 @@
-//angular imports
+// angular imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-//3rd party imports
+// 3rd party imports
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { CookieService } from 'ngx-cookie-service';
 
-//my modules
+// my modules
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNgModule } from './modules/PrimeNg.module';
@@ -28,6 +28,10 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ChecklistEditComponent } from './checklists/checklist-edit/checklist-edit.component';
 import { EditDescriptionComponent } from './checklists/edit-description/edit-description.component';
 import { PageIdentificationInfoComponent } from './shared/page-identification-info/page-identification-info.component';
+import { UpdateDetailsComponent } from './updates/update-details/update-details.component';
+import { UpdateStarterComponent } from './updates/update-starter/update-starter.component';
+import { UpdateService } from './services/update.service';
+import { UpdateStepDetailsComponent } from './updates/update-step-details/update-step-details.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { PageIdentificationInfoComponent } from './shared/page-identification-in
     SpinnerComponent,
     ChecklistEditComponent,
     EditDescriptionComponent,
-    PageIdentificationInfoComponent
+    PageIdentificationInfoComponent,
+    UpdateDetailsComponent,
+    UpdateStarterComponent,
+    UpdateStepDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,7 @@ import { PageIdentificationInfoComponent } from './shared/page-identification-in
     MaterialModule,
     SortablejsModule.forRoot({ animation: 150 })
   ],
-  providers: [ChecklistService, CookieService, AuthGuard],
+  providers: [ChecklistService, CookieService, AuthGuard, UpdateService],
   bootstrap: [AppComponent],
   entryComponents: [
     StepEditorComponent,

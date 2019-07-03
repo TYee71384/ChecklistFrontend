@@ -44,7 +44,7 @@ export class ChecklistDetailsComponent implements OnInit {
     //  console.log(this.id);
     this.checklistService.getChecklist(this.id, this.ver).subscribe(x => {
       this.checklist = x;
-      console.log('get',this.checklist);
+      console.log('get', this.checklist);
       this.status = x.status;
       this.history = x.logChecklistHistory;
       this.isApproved();
@@ -54,7 +54,7 @@ export class ChecklistDetailsComponent implements OnInit {
         {
           this.buttons.unshift({
             name: 'Update Starter',
-            path: '/update/starter',
+            path: '/updates/starter',
             id: this.id,
             ver: this.ver
           });
@@ -98,19 +98,24 @@ export class ChecklistDetailsComponent implements OnInit {
   }
 
   deleteChecklist() {
-    this.checklistService.deleteChecklist(this.id,this.ver).subscribe(() => {
-      alertify.warning(`Checklist Id: ${this.id} Version: ${this.ver} was deleted`);
-      this.router.navigate(['/']);
-    }, err => alertify.error(err));
+    this.checklistService.deleteChecklist(this.id, this.ver).subscribe(
+      () => {
+        alertify.warning(
+          `Checklist Id: ${this.id} Version: ${this.ver} was deleted`
+        );
+        this.router.navigate(['/']);
+      },
+      err => alertify.error(err)
+    );
   }
 
   archiveChecklist() {
-    this.checklistService.archiveChecklist(this.id,this.ver).subscribe(() =>
-    {
-      alertify.success('Checklist was set to Archived');
-      this.status = 'Archived';
-    },
+    this.checklistService.archiveChecklist(this.id, this.ver).subscribe(
+      () => {
+        alertify.success('Checklist was set to Archived');
+        this.status = 'Archived';
+      },
       err => alertify.error(err)
-    )
+    );
   }
 }
