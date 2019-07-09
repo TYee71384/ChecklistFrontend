@@ -1,7 +1,16 @@
+<app-update-header *ngIf="update" [percentage]="percentage" [title]="title" [status]="update.status"></app-update-header>
 <div *ngIf="update" class="container">
-  <p-accordion *ngFor="let step of update.logUpdateSteps">
-    <app-update-step-details [step]="step" [conn]="conn" ></app-update-step-details>
+  <span>
+    <app-update-info [update]="update"></app-update-info>
+  </span>
+  <span>
+    <p-accordion *ngFor="let step of update.logUpdateSteps">
+    <app-update-step-edit [edit]="edit" [step]="step" [conn]="conn" ></app-update-step-edit>
   </p-accordion>
+  </span>
+
 </div>
+
+<button *ngIf="percentage < 100" (click)="setEdit()">Edit/Display</button>
 
 

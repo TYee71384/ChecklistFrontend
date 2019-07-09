@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdateService } from 'src/app/services/update.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Update } from 'src/app/models/update';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-update-details',
@@ -12,9 +13,13 @@ import { Update } from 'src/app/models/update';
 export class UpdateDetailsComponent implements OnInit {
   id;
   update: Update;
-  public conn: HubConnection;
+  edit = true;
+  percentage;
+  title;
+    public conn: HubConnection;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private updateService: UpdateService
   ) {}
 
@@ -31,18 +36,35 @@ export class UpdateDetailsComponent implements OnInit {
       .then()
       .catch();
 
+
     this.conn.on('StepProgress', this.hubReturn.bind(this));
 
-    // this.getUpdate()
+    this.updateService.getPercentage(this.id).subscribe(x => {
+      this.percentage = x;
+      this.percentage < 100 ? (this.edit = true) : (this.edit = false);
+    });
   }
+
+setEdit() {
+  this.edit = !this.edit;
+  console.log(this.edit)
+}
 
   getUpdate() {
-    this.updateService.getUpdate(this.id).subscribe(x => (this.update = x));
+    this.updateService.getUpdate(this.id).subscribe(x =>{ (this.update = x);
+      this.title = `${this.update.prodLine} ${this.update.siteKml} : Update # ${
+        this.update.updateNum
+      } : ${this.update.process}`;
+    });
   }
 
-  hubReturn(progress,step, comment) {
-    this.update.logUpdateSteps[step -1].progress = progress;
-    this.update.logUpdateSteps[step -1].comment = comment;
-
+  hubReturn(progress, step, comment, percentage) {
+    this.update.logUpdateSteps[step - 1].progress = progress;
+    this.update.logUpdateSteps[step - 1].comment = comment;
+    this.percentage = percentage.replace('%', '');
+    if (this.percentage === '100.0') {
+      alertify.success('Update is complete!');
+      this.edit = false;
+    } 
   }
 }

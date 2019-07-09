@@ -1,0 +1,22 @@
+<div class="container mt-3">
+    <span>
+      <h5>Update Information</h5>
+      <hr>
+      <span fxLayoutAlign="center center" class="mb-3" fxLayoutGap="100px">
+       <div><b>Platform: </b> {{update.prodLine}}</div>
+        <div><b>Site: </b> {{update.siteKml}}</div>
+        <div><b>Update #: </b> {{update.updateNum}}</div>
+        <div><b>System: </b> {{update.system}}</div>
+        <div><b>Process: </b> {{update.process}}</div>
+        </span>
+     </span>
+      <span fxLayoutAlign="center center" fxLayoutGap="100px">
+        <div><b>Task #:</b> {{update.task}}</div>
+        <div><b>Update Release:</b> {{update.updateRelease}}</div>
+        <div><b>PPack:</b> {{update.updatePpack}}</div>
+      </span>
+      <button class="mt-3 mb-2" mat-raised-button (click)="editInfo()">
+        <mat-icon>create</mat-icon>
+      </button>
+
+    <hr>

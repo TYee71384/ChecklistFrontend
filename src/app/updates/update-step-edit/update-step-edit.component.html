@@ -1,0 +1,28 @@
+<p-accordionTab selected="true" header="Step {{step.step}} {{step.title}}">
+  <mat-card fxLayout="column" fxLayoutGap="20px" >
+    <mat-checkbox *ngIf="edit;else displayCheck" (change)="setDone($event)" [value]="isComplete" [checked]="step.progress === 'Done'"></mat-checkbox>
+<mat-card-content >
+
+     <div [innerHTML]="step.stepText"></div>
+
+      <mat-form-field class="mt-5" style="width:80%">
+          <input matInput type="text" (keyup)="saveComment($event)" [disabled]="!edit" placeholder="Comment" [value]="step.comment">
+      </mat-form-field>
+
+
+<span *ngIf="edit">
+    <mat-label>Skip</mat-label>
+    <mat-checkbox (change)="setSkip($event)" [value]="isComplete" [checked]="step.progress === 'Skip'"></mat-checkbox>
+    </span>
+  </mat-card-content>
+  </mat-card>
+
+</p-accordionTab>
+<ng-template #displayCheck>
+  <mat-icon color="primary" *ngIf="step.progress === 'Done'">check</mat-icon>
+  <mat-icon color="warn" *ngIf="step.progress === 'Skip'">clear</mat-icon>
+
+</ng-template>
+<ng-template #comment>
+  <span style="width:80%" class="mt-5">{{step.comment}}</span>
+</ng-template>

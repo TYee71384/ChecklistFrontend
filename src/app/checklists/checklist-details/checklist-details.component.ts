@@ -98,7 +98,8 @@ export class ChecklistDetailsComponent implements OnInit {
   }
 
   deleteChecklist() {
-    this.checklistService.deleteChecklist(this.id, this.ver).subscribe(
+    alertify.confirm('Are you sure you want to delete this checklist?', () => {
+ this.checklistService.deleteChecklist(this.id, this.ver).subscribe(
       () => {
         alertify.warning(
           `Checklist Id: ${this.id} Version: ${this.ver} was deleted`
@@ -107,6 +108,7 @@ export class ChecklistDetailsComponent implements OnInit {
       },
       err => alertify.error(err)
     );
+    })
   }
 
   archiveChecklist() {

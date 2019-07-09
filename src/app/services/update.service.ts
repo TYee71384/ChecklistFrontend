@@ -27,4 +27,10 @@ getUpdate(id) {
 getUpdates() {
   return this.http.get<Update[]>(this.baseUri);
 }
+
+getPercentage(id) {
+  return this.http.get(this.baseUri + id + '/Progress');
+}
+
+
 }

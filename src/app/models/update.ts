@@ -12,6 +12,7 @@ export interface LogUpdateStep {
   stepText: string;
   comment: string;
   progress: string;
+  title: string;
 }
 
 export interface Update {

@@ -1,0 +1,60 @@
+<mat-card>
+
+    <form #f="ngForm" >
+<span *ngIf="siteLookup && dictionary">
+      <div fxLayoutAlign="center center" fxLayoutGap="10px" >
+        <mat-form-field>
+          <mat-label>Site</mat-label>
+          <mat-select required [(ngModel)]="update.siteKml" name="siteKml">
+            <mat-option *ngFor="let item of siteLookup " [value]="item.siteKml">
+              {{item.siteKml}}: {{item.siteName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Update #" type="number" required [(ngModel)]="update.updateNum" name="updateNum">
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput placeholder="Task #" min="10000000" type="number" required [(ngModel)]="update.task" name="task">
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center">
+        <mat-form-field>
+          <mat-label>Update Release</mat-label>
+          <mat-select [(ngModel)]="update.updateRelease" name="updateRelease">
+            <mat-option *ngFor="let item of dictionary.releases " [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>PPack</mat-label>
+          <mat-select [(ngModel)]="update.updatePpack" name="updatePpack">
+            <mat-option *ngFor="let item of dictionary.pPacks" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>PPack</mat-label>
+            <mat-select [(ngModel)]="update.status" name="status">
+              <mat-option *ngFor="let item of statuses" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>
+      </div>
+      <div fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field style="width:100%">
+          <textarea class="" matInput placeholder="Note" [(ngModel)]="update.note" name="scope"
+            required></textarea>
+        </mat-form-field>
+      </div>
+</span>
+    </form>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!f.valid" (click)="submit(f)">
+        <mat-icon>save</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>

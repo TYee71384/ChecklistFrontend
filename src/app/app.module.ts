@@ -31,7 +31,10 @@ import { PageIdentificationInfoComponent } from './shared/page-identification-in
 import { UpdateDetailsComponent } from './updates/update-details/update-details.component';
 import { UpdateStarterComponent } from './updates/update-starter/update-starter.component';
 import { UpdateService } from './services/update.service';
-import { UpdateStepDetailsComponent } from './updates/update-step-details/update-step-details.component';
+import { UpdateStepEditComponent } from './updates/update-step-edit/update-step-edit.component';
+import { UpdateHeaderComponent } from './updates/update-header/update-header.component';
+import { UpdateInfoComponent } from './updates/update-info/update-info.component';
+import { EditUpdateInfoComponent } from './updates/edit-update-info/edit-update-info.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +52,12 @@ import { UpdateStepDetailsComponent } from './updates/update-step-details/update
     PageIdentificationInfoComponent,
     UpdateDetailsComponent,
     UpdateStarterComponent,
-    UpdateStepDetailsComponent
-  ],
+    UpdateStepEditComponent,
+    UpdateHeaderComponent,
+    UpdateInfoComponent,
+    EditUpdateInfoComponent,
+
+      ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -67,6 +74,7 @@ import { UpdateStepDetailsComponent } from './updates/update-step-details/update
   entryComponents: [
     StepEditorComponent,
     BuilderComponent,
+    EditUpdateInfoComponent,
     EditDescriptionComponent
   ]
 })
