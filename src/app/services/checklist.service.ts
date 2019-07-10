@@ -17,6 +17,15 @@ export class ChecklistService {
     return this.http.get<Checklist[]>(this.baseUri);
   }
 
+  approveChecklist(id,ver) {
+    return this.http.post(`${this.baseUri}/${id}/${ver}/approve`, {});
+  }
+
+  createDraft(checklist: Checklist) {
+    return this.http.post(`${this.baseUri}/${checklist.idchecklist}/${checklist.version}/draft`, checklist);
+
+  }
+
   getChecklist(id, ver) {
     return this.http.get<Checklist>(`${this.baseUri}/${id}/${ver}`);
   }
@@ -38,7 +47,7 @@ export class ChecklistService {
 
   addStep(step) {
     return this.http.post(this.stepUri, step);
-  }
+  } 
 
   reorderStep(checklist) {
     return this.http.put(this.stepUri + 'reorder', checklist);

@@ -5,7 +5,9 @@
       <span *ngIf="showApproval && !checklist.scope">
         <h5 class="alert-danger text-center">Objective and Scope is required in order to Approve</h5>
       </span>
-      <span *ngIf="showApproval && checklist.scope"><button mat-raised-button color="primary">Approve</button></span>
+      <span *ngIf="showApproval && checklist.scope"><button mat-raised-button color="primary" (click)="Approve()">Approve</button></span>
+      <span><button mat-raised-button color="primary" *ngIf="showArchive" (click)="createDraft()">Create New Version</button></span>
+
       <span>
         <h5>Description</h5>
         <hr>

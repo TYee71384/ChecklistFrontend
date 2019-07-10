@@ -99,18 +99,34 @@ export class ChecklistDetailsComponent implements OnInit {
 
   deleteChecklist() {
     alertify.confirm('Are you sure you want to delete this checklist?', () => {
- this.checklistService.deleteChecklist(this.id, this.ver).subscribe(
+      this.checklistService.deleteChecklist(this.id, this.ver).subscribe(
+        () => {
+          alertify.warning(
+            `Checklist Id: ${this.id} Version: ${this.ver} was deleted`
+          );
+          this.router.navigate(['/']);
+        },
+        err => alertify.error(err)
+      );
+    });
+  }
+
+  Approve() {
+    this.checklistService.approveChecklist(this.id, this.ver).subscribe(
       () => {
-        alertify.warning(
-          `Checklist Id: ${this.id} Version: ${this.ver} was deleted`
-        );
+        alertify.success('Checklist was Approved');
         this.router.navigate(['/']);
       },
       err => alertify.error(err)
     );
-    })
   }
 
+  createDraft(id,ver) {
+    this.checklistService.createDraft(this.checklist).subscribe((x: Checklist) =>
+    { alertify.success(`Checklist ${x.idchecklist} ${x.version} was created` );
+     this.router.navigate(['/checklists/edit', x.idchecklist, x.version])},
+      err => alertify.error(err.error))
+  }
   archiveChecklist() {
     this.checklistService.archiveChecklist(this.id, this.ver).subscribe(
       () => {
