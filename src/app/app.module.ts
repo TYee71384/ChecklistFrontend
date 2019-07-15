@@ -35,6 +35,7 @@ import { UpdateStepEditComponent } from './updates/update-step-edit/update-step-
 import { UpdateHeaderComponent } from './updates/update-header/update-header.component';
 import { UpdateInfoComponent } from './updates/update-info/update-info.component';
 import { EditUpdateInfoComponent } from './updates/edit-update-info/edit-update-info.component';
+import { UpdateSearchComponent } from './updates/update-search/update-search.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditUpdateInfoComponent } from './updates/edit-update-info/edit-update-
     UpdateHeaderComponent,
     UpdateInfoComponent,
     EditUpdateInfoComponent,
+    UpdateSearchComponent,
 
       ],
   imports: [

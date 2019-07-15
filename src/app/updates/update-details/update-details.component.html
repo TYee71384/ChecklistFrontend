@@ -1,6 +1,6 @@
 <app-update-header *ngIf="update" [percentage]="percentage" [title]="title" [status]="update.status"></app-update-header>
 <div *ngIf="update" class="container">
-  <span>
+  <span *ngIf="edit">
     <app-update-info [update]="update"></app-update-info>
   </span>
   <span>

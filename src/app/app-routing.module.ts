@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/AuthGuard';
 import { ChecklistEditComponent } from './checklists/checklist-edit/checklist-edit.component';
 import { UpdateDetailsComponent } from './updates/update-details/update-details.component';
 import { UpdateStarterComponent } from './updates/update-starter/update-starter.component';
+import { UpdateSearchComponent } from './updates/update-search/update-search.component';
 
 const routes: Routes = [
   { path: 'checklists', component: SearchComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     component: ChecklistEditComponent,
     canActivate: [AuthGuard]
   },
+  {path: 'updates', component: UpdateSearchComponent},
   {path: 'updates/details/:id', component: UpdateDetailsComponent},
   {path: 'updates/starter/:id/:ver', component: UpdateStarterComponent},
 

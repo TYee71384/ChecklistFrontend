@@ -1,20 +1,29 @@
 <p-accordionTab selected="true" header="Step {{step.step}} {{step.title}}">
-  <mat-card fxLayout="column" fxLayoutGap="20px" >
-    <mat-checkbox *ngIf="edit;else displayCheck" (change)="setDone($event)" [value]="isComplete" [checked]="step.progress === 'Done'"></mat-checkbox>
-<mat-card-content >
+  <mat-card fxLayout="column" fxLayoutGap="20px">
+    <mat-checkbox *ngIf="edit;else displayCheck" (change)="setDone($event)" [value]="isComplete"
+      [checked]="step.progress === 'Done'"></mat-checkbox>
+    <mat-card-content>
 
-     <div [innerHTML]="step.stepText"></div>
+      <div [innerHTML]="step.stepText"></div>
+      <form #commentForm="ngForm">
+        <mat-form-field class="mt-5" style="width:80%">
+          <span *ngIf="step.progress === 'Skip';else norequire ">
+            <input matInput type="text" ngModel name="comment" required (keyup)="saveComment($event)" [disabled]="!edit" placeholder="Comment"
+              [value]="step.comment">
+          </span>
+          <ng-template #norequire>
+            <input matInput type="text" ngModel name="comment" (keydown.enter)="saveComment($event)" [disabled]="!edit" placeholder="Comment"
+              [value]="step.comment">
+          </ng-template>
+        </mat-form-field>
+      </form>
 
-      <mat-form-field class="mt-5" style="width:80%">
-          <input matInput type="text" (keyup)="saveComment($event)" [disabled]="!edit" placeholder="Comment" [value]="step.comment">
-      </mat-form-field>
-
-
-<span *ngIf="edit">
-    <mat-label>Skip</mat-label>
-    <mat-checkbox (change)="setSkip($event)" [value]="isComplete" [checked]="step.progress === 'Skip'"></mat-checkbox>
-    </span>
-  </mat-card-content>
+      <span *ngIf="edit">
+        <mat-label>Skip</mat-label>
+        <mat-checkbox (change)="setSkip($event)" [value]="isComplete" [checked]="step.progress === 'Skip'">
+        </mat-checkbox>
+      </span>
+    </mat-card-content>
   </mat-card>
 
 </p-accordionTab>

@@ -65,6 +65,6 @@ setEdit() {
     if (this.percentage === '100.0') {
       alertify.success('Update is complete!');
       this.edit = false;
-    } 
+    }
   }
 }

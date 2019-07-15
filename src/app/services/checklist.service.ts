@@ -47,7 +47,7 @@ export class ChecklistService {
 
   addStep(step) {
     return this.http.post(this.stepUri, step);
-  } 
+  }
 
   reorderStep(checklist) {
     return this.http.put(this.stepUri + 'reorder', checklist);
@@ -75,6 +75,7 @@ export class ChecklistService {
       .subscribe((x: any) => {
         this.cookieService.set('Auth', x.isAuth);
         this.cookieService.set('User', x.user);
+        console.log(x)
       });
   }
 }

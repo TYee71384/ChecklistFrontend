@@ -85,6 +85,7 @@ export class ChecklistDetailsComponent implements OnInit {
 
   isApproved() {
     const user = this.cookieService.get('User');
+    console.log(user, 'user')
     const lastuser = this.checklist.logChecklistHistory.slice(-1)[0].fileBy;
     if (this.checklist.status === 'Draft' && user !== lastuser) {
       this.showApproval = true;

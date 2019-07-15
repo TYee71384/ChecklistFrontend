@@ -1,4 +1,7 @@
-<app-header *ngIf="checklist" [title]="title" [menuButtons]="buttons" [status]="status"></app-header>
+<div *ngIf="checklist">
+  <app-header  [title]="title" [menuButtons]="buttons" [status]="status"></app-header>
+</div>
+
 <mat-tab-group>
   <mat-tab label="Details" *ngIf="checklist">
     <div class="container mt-3">

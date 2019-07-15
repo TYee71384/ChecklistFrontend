@@ -9,10 +9,11 @@ import { ChecklistService } from './services/checklist.service';
 })
 export class AppComponent implements OnInit {
   title = 'checklistdb-spa';
-  cookieValue
+  cookieValue;
   constructor(private service: ChecklistService){}
 
   ngOnInit() {
     this.service.isAuth();
+    
   }
 }
